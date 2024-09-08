@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+    <!DOCTYPE mapper   
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.gssm.entity.Order">
+
+     <!-- 实体类与数据库映射字段部分  start -->
+	<resultMap id="ResultMapOrder" type="com.gssm.entity.Order">
+		     <result property="id" column="id"/>
+		     <result property="orderno" column="orderno"/>
+		     <result property="yuangongid" column="yuangongid"/>
+		     <result property="content" column="content"/>
+		     <result property="username" column="username"/>
+		     <result property="userphone" column="userphone"/>
+		     <result property="shijian" column="shijian"/>
+		     <result property="status" column="status"/>
+	</resultMap>
+	 <!-- 实体类与数据库映射字段部分  end -->
+	 
+	 <!-- 声明数据库字段 -->
+	<sql id="Order_field">
+			<!--判断是否是最后一个元素，如果不是最后一个添加,-->
+		     id,
+		     orderno,
+		     yuangongid,
+		     content,
+		     username,
+		     userphone,
+		     shijian,
+		     status
+	</sql>
+	<!-- 实体类属性  -->
+	<sql id="Order_insert">
+			<!--判断是否是最后一个元素，如果不是最后一个添加,-->
+		     #{id},
+		     #{orderno},
+		     #{yuangongid},
+		     #{content},
+		     #{username},
+		     #{userphone},
+		     #{shijian},
+		     #{status}
+	</sql>
+	
+	<!-- 执行修改时 数据库字段和表字段比较 -->
+	<sql id="Order_update">
+		<!--判断是否是最后一个元素，如果不是最后一个添加,-->
+        	<if test="id != null" >
+            	id =  #{id} ,
+        	</if>
+        	<if test="orderno != null" >
+            	orderno =  #{orderno} ,
+        	</if>
+        	<if test="yuangongid != null" >
+            	yuangongid =  #{yuangongid} ,
+        	</if>
+        	<if test="content != null" >
+            	content =  #{content} ,
+        	</if>
+        	<if test="username != null" >
+            	username =  #{username} ,
+        	</if>
+        	<if test="userphone != null" >
+            	userphone =  #{userphone} ,
+        	</if>
+        	<if test="shijian != null" >
+            	shijian =  #{shijian} ,
+        	</if>
+        	<if test="status != null" >
+            	status =  #{status} 
+        	</if>
+	</sql>
+	
+	<!-- 查询时条件 -->
+	<sql id="Order_where">
+        	<if test="id != null" >
+        		and id =  #{id}
+        	</if>
+        	<if test="orderno != null" >
+        		and orderno =  #{orderno}
+        	</if>
+        	<if test="yuangongid != null" >
+        		and yuangongid =  #{yuangongid}
+        	</if>
+        	<if test="content != null" >
+        		and content =  #{content}
+        	</if>
+        	<if test="username != null" >
+        		and username =  #{username}
+        	</if>
+        	<if test="userphone != null" >
+        		and userphone =  #{userphone}
+        	</if>
+        	<if test="shijian != null" >
+        		and shijian =  #{shijian}
+        	</if>
+        	<if test="status != null" >
+        		and status =  #{status}
+        	</if>
+	</sql>
+	<!-- 
+	 1.方法描述：新增数据
+	 2.参数：实体类
+	 3.返回：主键
+	-->
+	<insert id="insert" parameterType="com.gssm.entity.Order" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_order (
+        <include refid="Order_field" />
+        ) VALUES (
+        <include refid="Order_insert" />       
+        )
+	</insert>
+	
+	<!-- 
+	 1.方法描述：删除数据
+	 2.参数：主键id
+	-->
+	<delete id="delete" parameterType="java.lang.String">
+	 delete from t_order where id=#{id}
+	</delete>
+	
+	 <!-- 
+	 1.方法描述：删除数据(自定义)由于参数未知 因此在使用的时候注意要对参数进行判断。这里仅仅是一个模板
+	 2.参数：map
+	-->
+	<delete id="deleteBySqId" parameterType="map">
+	 delete from t_order where 1=1
+	 <include refid="Order_where" />
+	</delete>
+	
+	<!-- 
+	 1.方法描述：修改数据
+	 2.参数：实体类
+	-->
+	<update id="update" parameterType="com.gssm.entity.Order">
+        UPDATE t_order
+        <set>
+	        <include refid="Order_update" />
+	    </set>
+        WHERE 1=1
+        	and id=#{id}        
+	</update>
+	
+	<!-- 
+	 1.方法描述：select查询单个
+	 2.参数：id
+	-->
+	<select id="load" resultMap="ResultMapOrder" parameterType="java.lang.String">
+		select 	<include refid="Order_field" />
+ 		from t_order 
+ 		where id=#{id}
+	</select>
+	
+	
+	<!-- 
+	 1.方法描述：select查询单个(自定义)
+	 2.参数：map
+	-->
+	<select id="loadBySqlId" resultMap="ResultMapOrder" parameterType="map">
+		select 	<include refid="Order_field" />
+ 		from t_order 
+ 		WHERE 1=1
+        	<include refid="Order_where" />
+	</select>
+	
+	<!-- 
+	 1.方法描述：用于select查询所有
+	 2.参数：map
+	-->
+	<select id="list" resultMap="ResultMapOrder" parameterType="map">
+		select 	<include refid="Order_field" />
+ 		from t_order 
+ 		WHERE 1=1
+        	<include refid="Order_where" />
+	</select>
+	
+	<!-- 
+	 1.方法描述：用于select查询所有(自定义)
+	 2.参数：map
+	-->
+	<select id="listBySqlId" resultMap="ResultMapOrder" parameterType="map">
+		select <include refid="Order_field" />
+ 		from t_order where 1=1
+ 		<include refid="Order_where" /> 
+	</select>
+	
+	<!-- 
+	 1.方法描述：用于select查询所有
+	 2.参数：无参数
+	-->
+	<select id="listAll" resultMap="ResultMapOrder">
+		select <include refid="Order_field" />
+ 		from t_order 
+	</select>
+	
+	
+	<!-- 
+	 1.方法描述：用于select查询所有(自定义)
+	 2.参数：实体类
+	-->
+	<select id="listAllByEntity" resultMap="ResultMapOrder" parameterType="com.gssm.entity.Order">
+		select <include refid="Order_field" />
+ 		from t_order  where 1=1
+ 		<include refid="Order_where" /> 
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页
+	 2.参数：实体类
+	-->
+	<select id="findByEntity" resultMap="ResultMapOrder" parameterType="com.gssm.entity.Order">
+		select <include refid="Order_field" />
+ 		from t_order  where 1=1
+ 		<include refid="Order_where" /> 
+ 		order by id desc
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页(自定义)
+	 2.参数：实体类
+	-->
+	<select id="findByEntitySqlId" resultMap="ResultMapOrder" parameterType="com.gssm.entity.Order">
+		select <include refid="Order_field" />
+ 		from t_order  where 1=1
+ 		<include refid="Order_where" /> 
+ 		order by id desc
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页(自定义)
+	 2.参数：map
+	-->
+	<select id="findByMapSqlId" resultMap="ResultMapOrder" parameterType="map">
+		select <include refid="Order_field" />
+ 		from t_order where 1=1
+ 		<include refid="Order_where" /> 
+ 		order by id desc
+	</select>
+	
+	
+	<!-- 
+	 1.方法描述：查询分页 非插件
+	 2.参数：map
+	-->
+	<select id="find" resultMap="ResultMapOrder" parameterType="map">
+		select <include refid="Order_field" />
+ 		from t_order where 1=1
+ 		<include refid="Order_where" /> 
+ 		order by id desc limit  #{pageOffset}, #{pageSize}
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页  非插件    总数
+	 2.参数：map
+	-->
+	<select id="find_count" resultMap="ResultMapOrder" parameterType="map">
+		select count(*)
+ 		from t_order where 1=1
+ 		<include refid="Order_where" /> 
+ 		order by id desc
+	</select>
+		
+	<!-- 
+	 1.方法描述：查询分页  非插件   自定义
+	 2.参数：map
+	-->
+	<select id="findBySqlId" resultMap="ResultMapOrder" parameterType="map">
+		select <include refid="Order_field" />
+ 		from t_order where 1=1
+ 		<include refid="Order_where" /> 
+ 		order by id desc limit  #{pageOffset}, #{pageSize}
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页  非插件   总数  自定义
+	 2.参数：map
+	-->
+	<select id="findBySqlId_count" resultMap="ResultMapOrder" parameterType="map">
+		select count(*)
+ 		from t_order where 1=1
+ 		<include refid="Order_where" /> 
+	</select>
+	
+	
+	<!-- 
+	 1.方法描述：批量插入
+	 2.参数：集合/数组
+	-->
+	<insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO t_order (
+        <include refid="Order_field" />
+        ) VALUES 
+        <foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			 <include refid="Order_insert" />
+			)
+		</foreach>       
+        
+	</insert>
+    
+    <!-- 
+	 1.方法描述：批量修改
+	 2.参数：集合/数组
+	-->
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index"
+			separator=";">
+        UPDATE 
+        t_order 
+        <set>
+	    </set>
+        WHERE 
+        	1=1 
+        </foreach>    
+	</update>	
+	
+</mapper>
+

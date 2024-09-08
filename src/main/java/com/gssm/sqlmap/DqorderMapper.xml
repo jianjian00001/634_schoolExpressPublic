@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.gssm.entity.Dqorder">
+
+     <!-- 实体类与数据库映射字段部分  start -->
+	<resultMap id="ResultMapDqorder" type="com.gssm.entity.Dqorder">
+		     <result property="id" column="id"/>
+		     <result property="orderno" column="orderno"/>
+		     <result property="userid" column="userid"/>
+		     <result property="content" column="content"/>
+		     <result property="username" column="username"/>
+		     <result property="userphone" column="userphone"/>
+		     <result property="shijian" column="shijian"/>
+		     <result property="status" column="status"/>
+		     <result property="yname" column="yname"/>
+		     <result property="yphone" column="yphone"/>
+		     <result property="yid" column="yid"/>
+		     <result property="pingjia" column="pingjia"/>
+		     <result property="pingjia2" column="pingjia2"/>
+		     <result property="pingfen" column="pingfen"/>
+		     <result property="pingfen2" column="pingfen2"/>
+	</resultMap>
+	 <!-- 实体类与数据库映射字段部分  end -->
+
+	 <!-- 声明数据库字段 -->
+	<sql id="Dqorder_field">
+			<!--判断是否是最后一个元素，如果不是最后一个添加,-->
+		     id,
+		     orderno,
+		     userid,
+		     content,
+		     username,
+		     userphone,
+		     shijian,
+		     status,
+		     yname,
+		     yphone,
+		     yid,
+		     pingjia,
+		     pingjia2,
+		     pingfen,
+		     pingfen2
+	</sql>
+	<!-- 实体类属性  -->
+	<sql id="Dqorder_insert">
+			<!--判断是否是最后一个元素，如果不是最后一个添加,-->
+		     #{id},
+		     #{orderno},
+		     #{userid},
+		     #{content},
+		     #{username},
+		     #{userphone},
+		     #{shijian},
+		     #{status},
+		     #{yname},
+		     #{yphone},
+		     #{yid},
+		     #{pingjia},
+		     #{pingjia2},
+		     #{pingfen},
+		     #{pingfen2}
+	</sql>
+
+	<!-- 执行修改时 数据库字段和表字段比较 -->
+	<sql id="Dqorder_update">
+		<!--判断是否是最后一个元素，如果不是最后一个添加,-->
+        	<if test="id != null" >
+            	id =  #{id} ,
+        	</if>
+        	<if test="orderno != null" >
+            	orderno =  #{orderno} ,
+        	</if>
+        	<if test="userid != null" >
+            	userid =  #{userid} ,
+        	</if>
+        	<if test="content != null" >
+            	content =  #{content} ,
+        	</if>
+        	<if test="username != null" >
+            	username =  #{username} ,
+        	</if>
+        	<if test="userphone != null" >
+            	userphone =  #{userphone} ,
+        	</if>
+        	<if test="shijian != null" >
+            	shijian =  #{shijian} ,
+        	</if>
+        	<if test="status != null" >
+            	status =  #{status} ,
+        	</if>
+        	<if test="yname != null" >
+            	yname =  #{yname} ,
+        	</if>
+        	<if test="yphone != null" >
+            	yphone =  #{yphone} ,
+        	</if>
+        	<if test="yid != null" >
+            	yid =  #{yid} ,
+        	</if>
+        	<if test="pingjia != null" >
+            	pingjia =  #{pingjia} ,
+        	</if>
+        	<if test="pingjia2 != null" >
+            	pingjia2 =  #{pingjia2},
+        	</if>
+        	<if test="pingfen != null" >
+            	pingfen =  #{pingfen} ,
+        	</if>
+        	  	<if test="pingfen2 != null" >
+            	pingfen2 =  #{pingfen2} ,
+        	</if>
+	</sql>
+
+	<!-- 查询时条件 -->
+	<sql id="Dqorder_where">
+        	<if test="id != null" >
+        		and id =  #{id}
+        	</if>
+        	<if test="orderno != null" >
+        		and orderno =  #{orderno}
+        	</if>
+        	<if test="userid != null" >
+        		and userid =  #{userid}
+        	</if>
+        	<if test="content != null" >
+        		and content =  #{content}
+        	</if>
+        	<if test="username != null" >
+        		and username =  #{username}
+        	</if>
+        	<if test="userphone != null" >
+        		and userphone =  #{userphone}
+        	</if>
+        	<if test="shijian != null" >
+        		and shijian =  #{shijian}
+        	</if>
+        	<if test="status != null" >
+        		and status =  #{status}
+        	</if>
+        	<if test="yname != null" >
+        		and yname =  #{yname}
+        	</if>
+        	<if test="yphone != null" >
+        		and yphone =  #{yphone}
+        	</if>
+        	<if test="yid != null" >
+        		and yid =  #{yid}
+        	</if>
+        	<if test="pingjia != null" >
+        		and pingjia =  #{pingjia}
+        	</if>
+        	<if test="pingjia2 != null" >
+        		and pingjia2 =  #{pingjia2}
+        	</if>
+        		<if test="pingfen != null" >
+        		and pingfen =  #{pingfen}
+        	</if>
+        		<if test="pingfen2 != null" >
+        		and pingfen2 =  #{pingfen2}
+        	</if>
+	</sql>
+	<!--
+	 1.方法描述：新增数据
+	 2.参数：实体类
+	 3.返回：主键
+	-->
+	<insert id="insert" parameterType="com.gssm.entity.Dqorder" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_dqorder (
+        <include refid="Dqorder_field" />
+        ) VALUES (
+        <include refid="Dqorder_insert" />
+        )
+	</insert>
+
+	<!--
+	 1.方法描述：删除数据
+	 2.参数：主键id
+	-->
+	<delete id="delete" parameterType="java.lang.String">
+	 delete from t_dqorder where id=#{id}
+	</delete>
+
+	 <!--
+	 1.方法描述：删除数据(自定义)由于参数未知 因此在使用的时候注意要对参数进行判断。这里仅仅是一个模板
+	 2.参数：map
+	-->
+	<delete id="deleteBySqId" parameterType="map">
+	 delete from t_dqorder where 1=1
+	 <include refid="Dqorder_where" />
+	</delete>
+
+	<!--
+	 1.方法描述：修改数据
+	 2.参数：实体类
+	-->
+	<update id="update" parameterType="com.gssm.entity.Dqorder">
+        UPDATE t_dqorder
+        <set>
+	        <include refid="Dqorder_update" />
+	    </set>
+        WHERE 1=1
+        	and id=#{id}
+	</update>
+
+	<!--
+	 1.方法描述：select查询单个
+	 2.参数：id
+	-->
+	<select id="load" resultMap="ResultMapDqorder" parameterType="java.lang.String">
+		select 	<include refid="Dqorder_field" />
+ 		from t_dqorder
+ 		where id=#{id}
+	</select>
+
+
+	<!--
+	 1.方法描述：select查询单个(自定义)
+	 2.参数：map
+	-->
+	<select id="loadBySqlId" resultMap="ResultMapDqorder" parameterType="map">
+		select 	<include refid="Dqorder_field" />
+ 		from t_dqorder
+ 		WHERE 1=1
+        	<include refid="Dqorder_where" />
+	</select>
+
+	<!--
+	 1.方法描述：用于select查询所有
+	 2.参数：map
+	-->
+	<select id="list" resultMap="ResultMapDqorder" parameterType="map">
+		select 	<include refid="Dqorder_field" />
+ 		from t_dqorder
+ 		WHERE 1=1
+        	<include refid="Dqorder_where" />
+	</select>
+
+	<!--
+	 1.方法描述：用于select查询所有(自定义)
+	 2.参数：map
+	-->
+	<select id="listBySqlId" resultMap="ResultMapDqorder" parameterType="map">
+		select <include refid="Dqorder_field" />
+ 		from t_dqorder where 1=1
+ 		<include refid="Dqorder_where" />
+	</select>
+
+	<!--
+	 1.方法描述：用于select查询所有
+	 2.参数：无参数
+	-->
+	<select id="listAll" resultMap="ResultMapDqorder">
+		select <include refid="Dqorder_field" />
+ 		from t_dqorder
+	</select>
+
+
+	<!--
+	 1.方法描述：用于select查询所有(自定义)
+	 2.参数：实体类
+	-->
+	<select id="listAllByEntity" resultMap="ResultMapDqorder" parameterType="com.gssm.entity.Dqorder">
+		select <include refid="Dqorder_field" />
+ 		from t_dqorder  where 1=1
+ 		<include refid="Dqorder_where" />
+	</select>
+
+
+		<!--
+	 1.方法描述：查询分页
+	 2.参数：实体类
+	-->
+	<select id="findByEntity1" resultMap="ResultMapDqorder" parameterType="com.gssm.entity.Dqorder">
+		select <include refid="Dqorder_field" />
+ 		from t_dqorder  where 1=1 and pingfen &lt; 4
+ 		<include refid="Dqorder_where" />
+ 		order by id desc
+	</select>
+
+	<!--
+	 1.方法描述：查询分页
+	 2.参数：实体类
+	-->
+	<select id="findByEntity" resultMap="ResultMapDqorder" parameterType="com.gssm.entity.Dqorder">
+		select <include refid="Dqorder_field" />
+ 		from t_dqorder  where 1=1
+ 		<include refid="Dqorder_where" />
+ 		order by id desc
+	</select>
+
+	<!--
+	 1.方法描述：查询分页(自定义)
+	 2.参数：实体类
+	-->
+	<select id="findByEntitySqlId" resultMap="ResultMapDqorder" parameterType="com.gssm.entity.Dqorder">
+		select <include refid="Dqorder_field" />
+ 		from t_dqorder  where 1=1
+ 		<include refid="Dqorder_where" />
+ 		order by id desc
+	</select>
+
+	<!--
+	 1.方法描述：查询分页(自定义)
+	 2.参数：map
+	-->
+	<select id="findByMapSqlId" resultMap="ResultMapDqorder" parameterType="map">
+		select <include refid="Dqorder_field" />
+ 		from t_dqorder where 1=1
+ 		<include refid="Dqorder_where" />
+ 		order by id desc
+	</select>
+
+
+	<!--
+	 1.方法描述：查询分页 非插件
+	 2.参数：map
+	-->
+	<select id="find" resultMap="ResultMapDqorder" parameterType="map">
+		select <include refid="Dqorder_field" />
+ 		from t_dqorder where 1=1
+ 		<include refid="Dqorder_where" />
+ 		order by id desc limit  #{pageOffset}, #{pageSize}
+	</select>
+
+	<!--
+	 1.方法描述：查询分页  非插件    总数
+	 2.参数：map
+	-->
+	<select id="find_count" resultMap="ResultMapDqorder" parameterType="map">
+		select count(*)
+ 		from t_dqorder where 1=1
+ 		<include refid="Dqorder_where" />
+ 		order by id desc
+	</select>
+
+	<!--
+	 1.方法描述：查询分页  非插件   自定义
+	 2.参数：map
+	-->
+	<select id="findBySqlId" resultMap="ResultMapDqorder" parameterType="map">
+		select <include refid="Dqorder_field" />
+ 		from t_dqorder where 1=1
+ 		<include refid="Dqorder_where" />
+ 		order by id desc limit  #{pageOffset}, #{pageSize}
+	</select>
+
+	<!--
+	 1.方法描述：查询分页  非插件   总数  自定义
+	 2.参数：map
+	-->
+	<select id="findBySqlId_count" resultMap="ResultMapDqorder" parameterType="map">
+		select count(*)
+ 		from t_dqorder where 1=1
+ 		<include refid="Dqorder_where" />
+	</select>
+
+
+	<!--
+	 1.方法描述：批量插入
+	 2.参数：集合/数组
+	-->
+	<insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO t_dqorder (
+        <include refid="Dqorder_field" />
+        ) VALUES
+        <foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			 <include refid="Dqorder_insert" />
+			)
+		</foreach>
+
+	</insert>
+
+    <!--
+	 1.方法描述：批量修改
+	 2.参数：集合/数组
+	-->
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index"
+			separator=";">
+        UPDATE
+        t_dqorder
+        <set>
+	    </set>
+        WHERE
+        	1=1
+        </foreach>
+	</update>
+
+</mapper>
+

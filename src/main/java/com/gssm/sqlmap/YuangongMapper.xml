@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+    <!DOCTYPE mapper   
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.gssm.entity.Yuangong">
+
+     <!-- 实体类与数据库映射字段部分  start -->
+	<resultMap id="ResultMapYuangong" type="com.gssm.entity.Yuangong">
+		     <result property="id" column="id"/>
+		     <result property="loginname" column="loginname"/>
+		     <result property="pwd" column="pwd"/>
+		     <result property="realname" column="realname"/>
+		     <result property="address" column="address"/>
+		     <result property="sex" column="sex"/>
+		     <result property="tel" column="tel"/>
+		     <result property="age" column="age"/>
+		     <result property="zhiwei" column="zhiwei"/>
+		     <result property="xueli" column="xueli"/>
+		     <result property="bumen" column="bumen"/>
+		     <result property="status" column="status"/>
+	</resultMap>
+	 <!-- 实体类与数据库映射字段部分  end -->
+	 
+	 <!-- 声明数据库字段 -->
+	<sql id="Yuangong_field">
+			<!--判断是否是最后一个元素，如果不是最后一个添加,-->
+		     id,
+		     loginname,
+		     pwd,
+		     realname,
+		     address,
+		     sex,
+		     tel,
+		     age,
+		     zhiwei,
+		     xueli,
+		     bumen,
+		     status
+	</sql>
+	<!-- 实体类属性  -->
+	<sql id="Yuangong_insert">
+			<!--判断是否是最后一个元素，如果不是最后一个添加,-->
+		     #{id},
+		     #{loginname},
+		     #{pwd},
+		     #{realname},
+		     #{address},
+		     #{sex},
+		     #{tel},
+		     #{age},
+		     #{zhiwei},
+		     #{xueli},
+		     #{bumen},
+		     #{status}
+	</sql>
+	
+	<!-- 执行修改时 数据库字段和表字段比较 -->
+	<sql id="Yuangong_update">
+		<!--判断是否是最后一个元素，如果不是最后一个添加,-->
+        	<if test="id != null" >
+            	id =  #{id} ,
+        	</if>
+        	<if test="loginname != null" >
+            	loginname =  #{loginname} ,
+        	</if>
+        	<if test="pwd != null" >
+            	pwd =  #{pwd} ,
+        	</if>
+        	<if test="realname != null" >
+            	realname =  #{realname} ,
+        	</if>
+        	<if test="address != null" >
+            	address =  #{address} ,
+        	</if>
+        	<if test="sex != null" >
+            	sex =  #{sex} ,
+        	</if>
+        	<if test="tel != null" >
+            	tel =  #{tel} ,
+        	</if>
+        	<if test="age != null" >
+            	age =  #{age} ,
+        	</if>
+        	<if test="zhiwei != null" >
+            	zhiwei =  #{zhiwei} ,
+        	</if>
+        	<if test="xueli != null" >
+            	xueli =  #{xueli} ,
+        	</if>
+        	<if test="bumen != null" >
+            	bumen =  #{bumen} ,
+        	</if>
+        	<if test="status != null" >
+            	status =  #{status} 
+        	</if>
+	</sql>
+	
+	<!-- 查询时条件 -->
+	<sql id="Yuangong_where">
+        	<if test="id != null" >
+        		and id =  #{id}
+        	</if>
+        	<if test="loginname != null" >
+        		and loginname =  #{loginname}
+        	</if>
+        	<if test="pwd != null" >
+        		and pwd =  #{pwd}
+        	</if>
+        	<if test="realname != null" >
+        		and realname =  #{realname}
+        	</if>
+        	<if test="address != null" >
+        		and address =  #{address}
+        	</if>
+        	<if test="sex != null" >
+        		and sex =  #{sex}
+        	</if>
+        	<if test="tel != null" >
+        		and tel =  #{tel}
+        	</if>
+        	<if test="age != null" >
+        		and age =  #{age}
+        	</if>
+        	<if test="zhiwei != null" >
+        		and zhiwei =  #{zhiwei}
+        	</if>
+        	<if test="xueli != null" >
+        		and xueli =  #{xueli}
+        	</if>
+        	<if test="bumen != null" >
+        		and bumen =  #{bumen}
+        	</if>
+        	<if test="status != null" >
+        		and status =  #{status}
+        	</if>
+	</sql>
+	<!-- 
+	 1.方法描述：新增数据
+	 2.参数：实体类
+	 3.返回：主键
+	-->
+	<insert id="insert" parameterType="com.gssm.entity.Yuangong" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_yuangong (
+        <include refid="Yuangong_field" />
+        ) VALUES (
+        <include refid="Yuangong_insert" />       
+        )
+	</insert>
+	
+	<!-- 
+	 1.方法描述：删除数据
+	 2.参数：主键id
+	-->
+	<delete id="delete" parameterType="java.lang.String">
+	 delete from t_yuangong where id=#{id}
+	</delete>
+	
+	 <!-- 
+	 1.方法描述：删除数据(自定义)由于参数未知 因此在使用的时候注意要对参数进行判断。这里仅仅是一个模板
+	 2.参数：map
+	-->
+	<delete id="deleteBySqId" parameterType="map">
+	 delete from t_yuangong where 1=1
+	 <include refid="Yuangong_where" />
+	</delete>
+	
+	<!-- 
+	 1.方法描述：修改数据
+	 2.参数：实体类
+	-->
+	<update id="update" parameterType="com.gssm.entity.Yuangong">
+        UPDATE t_yuangong
+        <set>
+	        <include refid="Yuangong_update" />
+	    </set>
+        WHERE 1=1
+        	and id=#{id}        
+	</update>
+	
+	<!-- 
+	 1.方法描述：select查询单个
+	 2.参数：id
+	-->
+	<select id="load" resultMap="ResultMapYuangong" parameterType="java.lang.String">
+		select 	<include refid="Yuangong_field" />
+ 		from t_yuangong 
+ 		where id=#{id}
+	</select>
+	
+	
+	<!-- 
+	 1.方法描述：select查询单个(自定义)
+	 2.参数：map
+	-->
+	<select id="loadBySqlId" resultMap="ResultMapYuangong" parameterType="map">
+		select 	<include refid="Yuangong_field" />
+ 		from t_yuangong 
+ 		WHERE 1=1
+        	<include refid="Yuangong_where" />
+	</select>
+	
+	<!-- 
+	 1.方法描述：用于select查询所有
+	 2.参数：map
+	-->
+	<select id="list" resultMap="ResultMapYuangong" parameterType="map">
+		select 	<include refid="Yuangong_field" />
+ 		from t_yuangong 
+ 		WHERE 1=1
+        	<include refid="Yuangong_where" />
+	</select>
+	
+	<!-- 
+	 1.方法描述：用于select查询所有(自定义)
+	 2.参数：map
+	-->
+	<select id="listBySqlId" resultMap="ResultMapYuangong" parameterType="map">
+		select <include refid="Yuangong_field" />
+ 		from t_yuangong where 1=1
+ 		<include refid="Yuangong_where" /> 
+	</select>
+	
+	<!-- 
+	 1.方法描述：用于select查询所有
+	 2.参数：无参数
+	-->
+	<select id="listAll" resultMap="ResultMapYuangong">
+		select <include refid="Yuangong_field" />
+ 		from t_yuangong 
+	</select>
+	
+	
+	<!-- 
+	 1.方法描述：用于select查询所有(自定义)
+	 2.参数：实体类
+	-->
+	<select id="listAllByEntity" resultMap="ResultMapYuangong" parameterType="com.gssm.entity.Yuangong">
+		select <include refid="Yuangong_field" />
+ 		from t_yuangong  where 1=1
+ 		<include refid="Yuangong_where" /> 
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页
+	 2.参数：实体类
+	-->
+	<select id="findByEntity" resultMap="ResultMapYuangong" parameterType="com.gssm.entity.Yuangong">
+		select <include refid="Yuangong_field" />
+ 		from t_yuangong  where 1=1
+ 		<include refid="Yuangong_where" /> 
+ 		order by id desc
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页(自定义)
+	 2.参数：实体类
+	-->
+	<select id="findByEntitySqlId" resultMap="ResultMapYuangong" parameterType="com.gssm.entity.Yuangong">
+		select <include refid="Yuangong_field" />
+ 		from t_yuangong  where 1=1
+ 		<include refid="Yuangong_where" /> 
+ 		order by id desc
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页(自定义)
+	 2.参数：map
+	-->
+	<select id="findByMapSqlId" resultMap="ResultMapYuangong" parameterType="map">
+		select <include refid="Yuangong_field" />
+ 		from t_yuangong where 1=1
+ 		<include refid="Yuangong_where" /> 
+ 		order by id desc
+	</select>
+	
+	
+	<!-- 
+	 1.方法描述：查询分页 非插件
+	 2.参数：map
+	-->
+	<select id="find" resultMap="ResultMapYuangong" parameterType="map">
+		select <include refid="Yuangong_field" />
+ 		from t_yuangong where 1=1
+ 		<include refid="Yuangong_where" /> 
+ 		order by id desc limit  #{pageOffset}, #{pageSize}
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页  非插件    总数
+	 2.参数：map
+	-->
+	<select id="find_count" resultMap="ResultMapYuangong" parameterType="map">
+		select count(*)
+ 		from t_yuangong where 1=1
+ 		<include refid="Yuangong_where" /> 
+ 		order by id desc
+	</select>
+		
+	<!-- 
+	 1.方法描述：查询分页  非插件   自定义
+	 2.参数：map
+	-->
+	<select id="findBySqlId" resultMap="ResultMapYuangong" parameterType="map">
+		select <include refid="Yuangong_field" />
+ 		from t_yuangong where 1=1
+ 		<include refid="Yuangong_where" /> 
+ 		order by id desc limit  #{pageOffset}, #{pageSize}
+	</select>
+	
+	<!-- 
+	 1.方法描述：查询分页  非插件   总数  自定义
+	 2.参数：map
+	-->
+	<select id="findBySqlId_count" resultMap="ResultMapYuangong" parameterType="map">
+		select count(*)
+ 		from t_yuangong where 1=1
+ 		<include refid="Yuangong_where" /> 
+	</select>
+	
+	
+	<!-- 
+	 1.方法描述：批量插入
+	 2.参数：集合/数组
+	-->
+	<insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO t_yuangong (
+        <include refid="Yuangong_field" />
+        ) VALUES 
+        <foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			 <include refid="Yuangong_insert" />
+			)
+		</foreach>       
+        
+	</insert>
+    
+    <!-- 
+	 1.方法描述：批量修改
+	 2.参数：集合/数组
+	-->
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index"
+			separator=";">
+        UPDATE 
+        t_yuangong 
+        <set>
+	    </set>
+        WHERE 
+        	1=1 
+        </foreach>    
+	</update>	
+	
+</mapper>
+
